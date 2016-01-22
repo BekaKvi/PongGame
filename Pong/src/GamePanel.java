@@ -41,9 +41,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Player player;
 	Player player2;
 	Player computer;
-	
 
-	
 	
 	/**
 	 * Creates game Timer, creates initial GameObjects
@@ -55,14 +53,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         t = new Timer(1000/FRAME_RATE, this);
 		ball = new GameObject(450, 450, 30, 30, 3, 3);
 		player = new Player(0, 0, 20, 200);
-
-		
-		//// Chsange Later
-		
-		//if(startGamePlayer == true)
-			player2 = new Player(880, 0, 20, 200);
-		//else if(startGameComputer == true)
-			computer = new Player(ball, 880, 0, 20, 200);	 		
+		player2 = new Player(880, 0, 20, 200);
+		computer = new Player(ball, 880, 0, 20, 200);	 		
 		
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -77,17 +69,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		setBackground(new Color(214, 237, 149));
+		if(startGamePlayer != true && startGameComputer != true){
+			setBackground(new Color(218, 71, 92));
 
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
-		g.drawString("PONG", Main.pWidth / 2 - 150, Main.pHeight / 4);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
+			g.setColor(Color.white);
+			g.drawString("PONG", Main.pWidth / 2 - 150, Main.pHeight / 4);
 
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-		g.drawString("Play Against Computer - press C", Main.pWidth / 2 - 250, Main.pHeight / 2);
-		g.drawString("Play Against Player       - press H", Main.pWidth / 2 - 250, Main.pHeight / 2 + 50);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+			g.setColor(Color.white);
+			g.drawString("Play Against Computer - press 1", Main.pWidth / 2 - 250, Main.pHeight / 2);
+			g.drawString("Play Against Player       - press 2", Main.pWidth / 2 - 250, Main.pHeight / 2 + 50);
+		}
 		
 		if (startGamePlayer == true) {
-			setBackground(Color.black);
+			setBackground(new Color(218, 71, 92));
 
 			g.setColor(Color.white);
 			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
@@ -101,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(player2.topLeft.x, player2.topLeft.y, player2.getPlayerWidth(), player2.getPlayerHeight());
 			
 		} else if (startGameComputer == true) {
-			setBackground(Color.black);
+			setBackground(new Color(218, 71, 92));
 
 			g.setColor(Color.white);
 			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
@@ -130,19 +126,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			tick();
 		}
 	}
-
-	/**
-	 * Make sure all GameObjects are in the right place (do any need to be removed? do we need to create any new ones?), then redraw game
-	 */
 	
 	/**
 	 * Responds to the specific letters, when pushed on the keyboard
 	 */
 	
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_H)
+		if (e.getKeyCode() == KeyEvent.VK_2)
 			startGamePlayer = true;
-		else if (e.getKeyCode() == KeyEvent.VK_C)
+		else if (e.getKeyCode() == KeyEvent.VK_1)
 			startGameComputer = true;
 
 		if (e.getKeyCode() == KeyEvent.VK_W)
@@ -207,8 +199,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			ball = new GameObject(250, 250, 30, 30, 3, -3);
 		}
 		
-		repaint(); // ask to have the game redrawn (this will invoke
-					// paintComponent() when the system says the time is right)
+		repaint(); 
 
 	}
 

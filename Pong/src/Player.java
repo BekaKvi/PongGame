@@ -47,20 +47,6 @@ public class Player {
 	}
 	
 	/**
-	 * Having trouble to develop following method
-	 * It should determine the valid coordinates for the paddle
-	 */
-	
-	/*
-	public void step(){
-		if(topLeft.y < GameObject.appTopBarSize){
-			playerSpeed *= 1;	
-		} else if(bottomRight.y > Main.pWidth -25){
-			playerSpeed *= -1;
- 		}
-	}*/
-	
-	/**
 	 * Updates the speed of the x and y axis
 	 * 
 	 */
